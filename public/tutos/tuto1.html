@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Étape 1 — Créer ton dépôt GitHub | FlowBoard</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terracotta: #d25050;
+  --terracotta-light: #e87070;
+  --slate: #3d4a55;
+  --beige: #d3baaa;
+  --beige-light: #f5efe9;
+  --dark: #1a1a2e;
+  --darker: #12121f;
+  --white: #ffffff;
+  --green: #C8F464;
+  --green-dim: rgba(200,244,100,.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--beige-light);
+  color: var(--slate);
+  line-height: 1.7;
+  padding: 24px 16px 60px;
+  display: flex;
+  justify-content: center;
+}
+.wrapper { max-width: 720px; width: 100%; }
+
+/* ── EXPLAINER BOX (C'est quoi GitHub) ── */
+.explainer {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 24px rgba(0,0,0,.05);
+  border: 1px solid rgba(0,0,0,.04);
+  position: relative;
+  overflow: hidden;
+}
+.explainer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--terracotta), var(--terracotta-light), var(--beige));
+}
+.explainer-emoji {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+.explainer h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--dark);
+  margin-bottom: 14px;
+  line-height: 1.3;
+}
+.explainer p {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.explainer strong { color: var(--dark); }
+
+.analogy {
+  background: var(--beige-light);
+  border-radius: 14px;
+  padding: 20px 22px;
+  margin: 18px 0;
+  position: relative;
+}
+.analogy-header {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--terracotta);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+.analogy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 20px;
+}
+.analogy-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 5px 0;
+}
+.analogy-item .real {
+  color: var(--terracotta);
+  font-weight: 700;
+  min-width: 90px;
+}
+.analogy-item .arrow {
+  color: var(--beige);
+  font-weight: 700;
+}
+.analogy-item .github {
+  color: var(--slate);
+  font-weight: 600;
+}
+
+.reassure {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(200,244,100,.1), rgba(200,244,100,.05));
+  border: 1px solid rgba(200,244,100,.25);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-top: 16px;
+  font-size: 14px;
+}
+.reassure-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── STEP BOX ── */
+.step {
+  background: white;
+  border-radius: 20px;
+  padding: 32px 28px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 24px rgba(0,0,0,.05);
+  position: relative;
+  border: 1px solid rgba(0,0,0,.04);
+}
+.step-number {
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  background: var(--terracotta);
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 16px;
+  box-shadow: 0 4px 14px rgba(210,80,80,.3);
+}
+.step h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  color: var(--dark);
+  margin-bottom: 14px;
+  padding-left: 4px;
+}
+.step > p {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+/* ── SUBSTEPS ── */
+.substeps {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+}
+.substep {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(0,0,0,.05);
+}
+.substep:last-child { border-bottom: none; }
+.substep-letter {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--beige);
+  color: var(--slate);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.substep-text {
+  font-size: 15px;
+  color: var(--slate);
+  flex: 1;
+}
+.substep-text strong {
+  color: var(--dark);
+}
+.substep-text .highlight {
+  background: rgba(210,80,80,.08);
+  color: var(--terracotta);
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 5px;
+  font-family: 'DM Sans', sans-serif;
+}
+.substep-text .green-highlight {
+  background: rgba(200,244,100,.15);
+  color: #3d6b00;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+.substep-text small {
+  display: block;
+  color: #999;
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-top: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.callout.tip {
+  background: rgba(200,244,100,.12);
+  border: 1px solid rgba(200,244,100,.25);
+}
+.callout.warning {
+  background: rgba(210,80,80,.07);
+  border: 1px solid rgba(210,80,80,.18);
+}
+.callout-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── VISUAL SCREENSHOT-LIKE BOX ── */
+.screenshot-hint {
+  background: #f8f6f3;
+  border: 2px dashed var(--beige);
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 16px 0;
+  text-align: center;
+}
+.screenshot-hint .mock-ui {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--slate);
+  margin: 8px 0;
+}
+.screenshot-hint .mock-btn {
+  background: #2da44e;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline-block;
+  margin: 8px 0;
+}
+.screenshot-hint .mock-plus {
+  background: var(--slate);
+  color: white;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+}
+.screenshot-hint p {
+  font-size: 12px;
+  color: #999;
+  margin-top: 6px;
+}
+
+/* ── FOOTER ── */
+.step-footer {
+  text-align: center;
+  color: #bbb;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+@media (max-width: 480px) {
+  body { padding: 16px 12px 40px; }
+  .explainer, .step { padding: 24px 20px; }
+  .analogy-grid { grid-template-columns: 1fr; }
+  .explainer h2, .step h2 { font-size: 20px; }
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ════════════════════════════════════════
+       BLOC 1 : C'EST QUOI GITHUB ?
+       ════════════════════════════════════════ -->
+  <div class="explainer">
+    <div class="explainer-emoji">📦</div>
+    <h2>Avant de commencer : c'est quoi GitHub ?</h2>
+    
+    <p>Imagine que tu travailles sur un document Word important. Tu le sauvegardes sur ton ordinateur, mais si ton PC plante, tu perds tout. Alors tu le mets sur <strong>Google Drive</strong> — comme ça, il est en sécurité en ligne et tu peux y accéder de partout.</p>
+
+    <p><strong>GitHub, c'est exactement la même chose, mais pour du code.</strong></p>
+
+    <p>C'est un site web (gratuit) où tu déposes tes fichiers de code. Ils sont stockés en ligne, en sécurité, et accessibles de partout. C'est aussi ce qui permet à Vercel de lire ton code et de le transformer en un vrai site web.</p>
+
+    <div class="analogy">
+      <div class="analogy-header">💡 L'analogie Google Drive</div>
+      <div class="analogy-grid">
+        <div class="analogy-item">
+          <span class="real">Google Drive</span>
+          <span class="arrow">→</span>
+          <span class="github">GitHub</span>
+        </div>
+        <div class="analogy-item">
+          <span class="real">Un dossier</span>
+          <span class="arrow">→</span>
+          <span class="github">Un "dépôt" (repository)</span>
+        </div>
+        <div class="analogy-item">
+          <span class="real">Un fichier</span>
+          <span class="arrow">→</span>
+          <span class="github">Un fichier (pareil !)</span>
+        </div>
+        <div class="analogy-item">
+          <span class="real">Enregistrer</span>
+          <span class="arrow">→</span>
+          <span class="github">Faire un "commit"</span>
+        </div>
+      </div>
+    </div>
+
+    <p>Tu n'as <strong>rien à installer</strong> sur ton ordinateur. Tout se fait depuis ton navigateur, directement sur le site github.com. Tu vas juste créer des fichiers et coller du code dedans — exactement comme si tu créais un Google Doc et que tu collais du texte.</p>
+
+    <div class="reassure">
+      <span class="reassure-icon">🤗</span>
+      <div>
+        <strong>Pas de panique :</strong> GitHub est utilisé par des millions de développeurs, mais tu n'as pas besoin d'être dev pour l'utiliser ! Pour nous, c'est juste un endroit où poser 4 fichiers. Rien de plus.
+      </div>
+    </div>
+  </div>
+
+  <!-- ════════════════════════════════════════
+       BLOC 2 : ÉTAPE 1
+       ════════════════════════════════════════ -->
+  <div class="step">
+    <div class="step-number">1</div>
+    <h2>Créer un nouveau dépôt GitHub</h2>
+    <p>On va créer un "dépôt" — c'est-à-dire un dossier en ligne qui va contenir les 4 fichiers de ton dashboard. Ça prend 2 minutes.</p>
+
+    <ul class="substeps">
+      <li class="substep">
+        <span class="substep-letter">a</span>
+        <div class="substep-text">
+          Va sur <strong>github.com</strong> et connecte-toi à ton compte
+          <small>Si tu n'as pas encore de compte, clique sur "Sign up" et crée-en un gratuitement avec ton email.</small>
+        </div>
+      </li>
+      <li class="substep">
+        <span class="substep-letter">b</span>
+        <div class="substep-text">
+          En haut à droite de l'écran, repère le petit bouton <span class="highlight">+</span>
+          <small>C'est un petit "+" à côté de ta photo de profil. Clique dessus.</small>
+        </div>
+      </li>
+      <li class="substep">
+        <span class="substep-letter">c</span>
+        <div class="substep-text">
+          Dans le menu qui s'ouvre, clique sur <strong>"New repository"</strong>
+          <small>"Repository" = dépôt en anglais. C'est le nom pour un dossier de projet sur GitHub.</small>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Visual hint -->
+    <div class="screenshot-hint">
+      <div>
+        <span class="mock-plus">+</span>
+      </div>
+      <div class="mock-ui">▾ New repository</div>
+      <p>Le bouton "+" est tout en haut à droite, à côté de ta photo de profil</p>
+    </div>
+
+    <ul class="substeps">
+      <li class="substep">
+        <span class="substep-letter">d</span>
+        <div class="substep-text">
+          Dans le champ <strong>"Repository name"</strong>, tape : <span class="highlight">flowboard</span>
+          <small>C'est le nom de ton projet. Tout en minuscules, pas d'espaces, pas d'accents.</small>
+        </div>
+      </li>
+      <li class="substep">
+        <span class="substep-letter">e</span>
+        <div class="substep-text">
+          Laisse coché <strong>"Public"</strong>
+          <small>Ça veut dire que tout le monde peut voir ton code. C'est nécessaire pour que Vercel puisse y accéder. Pas d'inquiétude : personne ne va fouiller dedans !</small>
+        </div>
+      </li>
+      <li class="substep">
+        <span class="substep-letter">f</span>
+        <div class="substep-text">
+          Coche la case <strong>"Add a README file"</strong>
+          <small>Très important ! Sans ça, GitHub crée un dépôt vide dans lequel tu ne pourras pas ajouter de fichiers depuis le navigateur.</small>
+        </div>
+      </li>
+      <li class="substep">
+        <span class="substep-letter">g</span>
+        <div class="substep-text">
+          Clique sur le bouton vert <span class="green-highlight">Create repository</span>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Callout explication README -->
+    <div class="callout tip">
+      <span class="callout-icon">💡</span>
+      <div>
+        <strong>Pourquoi le README est important ?</strong><br>
+        Le README crée une première "version" de ton dossier (on appelle ça une "branche" en langage GitHub). C'est grâce à ça que tu pourras ensuite ajouter d'autres fichiers directement depuis ton navigateur, sans aucun logiciel à installer.
+      </div>
+    </div>
+
+    <!-- Callout résultat -->
+    <div class="callout tip">
+      <span class="callout-icon">🎉</span>
+      <div>
+        <strong>Bravo !</strong> Tu es maintenant sur la page de ton dépôt. Tu vois un fichier <strong>README.md</strong> — c'est normal, c'est celui que GitHub a créé automatiquement. Dans les prochaines étapes, on va ajouter les 4 fichiers de ton dashboard juste à côté.
+      </div>
+    </div>
+
+    <!-- Callout structure finale -->
+    <div class="callout warning">
+      <span class="callout-icon">📁</span>
+      <div>
+        <strong>Objectif final :</strong> à la fin du Tuto 1, ton dépôt contiendra exactement cette structure :
+        <div style="font-family: 'Courier New', monospace; font-size: 13px; margin-top: 10px; line-height: 2; color: var(--dark);">
+          📦 flowboard/<br>
+          ├── 📄 package.json<br>
+          ├── 📄 index.html<br>
+          └── 📁 src/<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── 📄 main.jsx<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── 📄 App.jsx
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-footer">
+    FlowBoard — Les Fées de l'IA © 2026
+  </div>
+
+</div>
+</body>
+</html>
